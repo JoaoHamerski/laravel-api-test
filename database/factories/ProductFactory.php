@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         return [
             'name' => ucfirst(fake()->words(3, true)),
             'price' => fake()->randomFloat(2, 10, 1000),
-            'description' => fake()->text()
+            'description' => fake()->words(10, true)
         ];
     }
 }
