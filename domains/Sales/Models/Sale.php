@@ -11,7 +11,7 @@ class Sale extends Model
 {
     use HasFactory;
 
-    public function sales(): BelongsToMany
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
