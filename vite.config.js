@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import eslint from 'vite-plugin-eslint'
 
 export default defineConfig({
     plugins: [
@@ -16,5 +17,8 @@ export default defineConfig({
                 },
             },
         }),
+        eslint({
+            include: ['./resources/js/**.*{vue,js,ts}', './*.{js,ts}']
+        })
     ],
 });
