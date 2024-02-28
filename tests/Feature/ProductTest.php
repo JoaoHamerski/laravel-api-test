@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Domains\Products\Models\Product;
+use Domains\Sales\Models\Sale;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -10,12 +12,10 @@ class ProductTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
-    public function test_can_access_index_route(): void
+    /** @test */
+    public function it_can_access_get_endpoint()
     {
-        $response = $this->get(route('products.index'));
+        $response = $this->get(route('api.products.get'));
 
         $response->assertStatus(200);
     }
