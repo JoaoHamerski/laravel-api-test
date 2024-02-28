@@ -5,11 +5,19 @@ namespace Tests\Unit;
 use Domains\Products\Models\Product;
 use Domains\Sales\Models\Sale;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
     use RefreshDatabase;
+    /** @test */
+    public function it_has_get_route()
+    {
+        $this->assertTrue(
+            Route::has('api.products.get')
+        );
+    }
 
     /** @test */
     public function it_can_create_a_product()
@@ -28,7 +36,7 @@ class ProductTest extends TestCase
 
         $sales = $product->sales;
 
-        $this->assertIsIterable($sales);
+        $this->assertCount(5, $sales);
         $this->assertInstanceOf(Sale::class, $sales->first());
     }
 }

@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Domains\Products\Models\Product;
-use Domains\Sales\Models\Sale;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
