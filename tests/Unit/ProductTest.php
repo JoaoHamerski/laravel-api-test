@@ -15,7 +15,14 @@ class ProductTest extends TestCase
     public function it_has_get_route()
     {
         $this->assertTrue(
-            Route::has('api.products.get')
+            Route::has('api.products.get-all')
+        );
+    }
+
+    public function it_has_create_route()
+    {
+        $this->assertTrue(
+            Route::has('api.products.get-all')
         );
     }
 
