@@ -39,7 +39,6 @@ class SaleSeeder extends Seeder
 
         $productIds = $products->pluck('id');
 
-
         $sale->products()->attach(
             fake()->randomElements($productIds, $PRODUCTS_QUANTITY, true)
         );
