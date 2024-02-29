@@ -5,6 +5,7 @@ namespace Domains\Sales\Controllers;
 use App\Http\Controllers\Controller;
 use Domains\Sales\Models\Sale;
 use Domains\Sales\Requests\SaleRequest;
+use Domains\Sales\Resources\SaleResource;
 
 class CreateSaleController extends Controller
 {
@@ -14,6 +15,6 @@ class CreateSaleController extends Controller
 
         $sale->products()->attach($request->product_ids);
 
-        return $sale->load('products');
+        return new SaleResource($sale->load('products'));
     }
 }

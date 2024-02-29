@@ -4,6 +4,7 @@ namespace Domains\Sales\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domains\Sales\Models\Sale;
+use Domains\Sales\Resources\SaleResource;
 
 class CancelSaleController extends Controller
 {
@@ -17,6 +18,6 @@ class CancelSaleController extends Controller
             'canceled_at' => now()
         ]);
 
-        return $sale->fresh();
+        return new SaleResource($sale->fresh());
     }
 }
