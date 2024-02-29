@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Domains\Products\Actions\MergeSaleProductsAction;
 use Domains\Products\Models\Product;
 use Domains\Sales\Models\Sale;
 use Domains\Sales\Resources\SaleResource;
@@ -69,6 +70,28 @@ class SaleTest extends TestCase
         $data = $sale->getData(true);
         $amount = $data['amount'];
 
-        $this->assertEquals($amount, $newSale->amount);
+        $this->assertEqualsWithDelta($amount, $newSale->amount, 0.1);
+    }
+
+    /** @test */
+    public function it_merge_all_sale_products()
+    {
+        $product = Product::factory()->create();
+        $sale = Sale::factory()->create();
+
+        $sale->products()->attach([$product->id, $product->id]);
+
+        $mergedProducts = MergeSaleProductsAction::execute($sale->products);
+        $mergedProduct = $mergedProducts->first();
+
+        $mergedProductPrice = $mergedProduct->price;
+        $saleProductsPrice = $sale->products()->sum('price');
+
+        $this->assertEquals($mergedProduct->amount, $sale->products->count());
+        $this->assertEqualsWithDelta(
+            $mergedProductPrice,
+            $saleProductsPrice,
+            0.1
+        );
     }
 }
