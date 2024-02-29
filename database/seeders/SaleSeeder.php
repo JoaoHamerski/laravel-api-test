@@ -30,13 +30,18 @@ class SaleSeeder extends Seeder
 
     private function attachProducts(Sale $sale)
     {
-        $PRODUCTS_QUANTITY = fake()->numberBetween(0, 5);
+        $PRODUCTS_QUANTITY = fake()->numberBetween(0, 10);
 
         $products = Product::query()
             ->inRandomOrder()
             ->take($PRODUCTS_QUANTITY)
             ->get();
 
-        $sale->products()->attach($products);
+        $productIds = $products->pluck('id');
+
+
+        $sale->products()->attach(
+            fake()->randomElements($productIds, $PRODUCTS_QUANTITY, true)
+        );
     }
 }
