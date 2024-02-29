@@ -2,7 +2,7 @@
 
 namespace Domains\Sales\Resources;
 
-use Domains\Products\Actions\MergeSaleProductsAction;
+use Domains\Sales\Actions\MergeSaleProductsAction;
 use Domains\Products\Models\Product;
 use Domains\Products\Resources\ProductResource;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,6 +22,7 @@ class SaleResource extends JsonResource
         return [
             'id' => $this->id,
             'amount' => round($this->amount, 2),
+            'canceled_at' => $this->canceled_at,
             'products' => $this->getProducts()
         ];
     }
