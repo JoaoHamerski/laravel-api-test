@@ -31,6 +31,14 @@ class SaleTest extends TestCase
     }
 
     /** @test */
+    public function it_has_cancel_route()
+    {
+        $this->assertTrue(
+            Route::has('api.sales.cancel')
+        );
+    }
+
+    /** @test */
     public function it_belongs_to_many_products()
     {
         $sale = Sale::factory()
@@ -84,7 +92,7 @@ class SaleTest extends TestCase
         $mergedProducts = MergeSaleProductsAction::execute($sale->products);
         $mergedProduct = $mergedProducts->first();
 
-        $mergedProductPrice = $mergedProduct->price;
+        $mergedProductPrice = $mergedProduct->amount_price;
         $saleProductsPrice = $sale->products()->sum('price');
 
         $this->assertEquals($mergedProduct->amount, $sale->products->count());
