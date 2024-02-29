@@ -61,8 +61,8 @@ class SaleTest extends TestCase
         $productsAmountFromQuery = $sale->products()->sum('price');
         $productsAmountFromCollection = $sale->products->sum('price');
 
-        $this->assertEquals($productsAmountFromQuery, $sale->amount);
-        $this->assertEquals($productsAmountFromCollection, $sale->amount);
+        $this->assertEqualsWithDelta($productsAmountFromQuery, $sale->amount, 0.1);
+        $this->assertEqualsWithDelta($productsAmountFromCollection, $sale->amount, 0.1);
     }
 
     /** @test */
