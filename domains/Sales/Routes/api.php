@@ -1,5 +1,6 @@
 <?php
 
+use Domains\Sales\Controllers\AddProductsToSaleController;
 use Domains\Sales\Controllers\CancelSaleController;
 use Domains\Sales\Controllers\CreateSaleController;
 use Domains\Sales\Controllers\GetSaleController;
@@ -11,4 +12,5 @@ Route::name('sales.')->prefix('vendas')->group(function () {
     Route::post('/', CreateSaleController::class)->name('create');
     Route::get('/{sale}', GetSaleController::class)->name('get');
     Route::post('/{sale}/cancelar', CancelSaleController::class)->name('cancel');
+    Route::post('/{sale}/adicionar-produtos', AddProductsToSaleController::class)->name('add-products');
 });
