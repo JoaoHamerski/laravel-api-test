@@ -12,6 +12,10 @@ class Sale extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'canceled_at'
+    ];
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
@@ -21,6 +25,13 @@ class Sale extends Model
     {
         return Attribute::make(
             get: fn () => $this->products()->sum('price')
+        );
+    }
+
+    public function isCanceled(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => !!$this->canceled_at
         );
     }
 }
