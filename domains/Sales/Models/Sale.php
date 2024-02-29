@@ -20,7 +20,7 @@ class Sale extends Model
     public function amount(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->products()->sum('price')
+            get: fn () => $this->products()->sum('price')
         );
     }
 }
