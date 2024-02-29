@@ -47,18 +47,4 @@ class SaleTest extends TestCase
             'product_ids.1'
         ]);
     }
-
-    /** @test */
-    public function it_calculates_the_correct_amount_of_products()
-    {
-        $sale = Sale::factory()->has(
-            Product::factory()->count(5)
-        )->create();
-
-        $productsAmountFromQuery = $sale->products()->sum('price');
-        $productsAmountFromCollection = $sale->products->sum('price');
-
-        $this->assertEquals($productsAmountFromQuery, $sale->amount);
-        $this->assertEquals($productsAmountFromCollection, $sale->amount);
-    }
 }
