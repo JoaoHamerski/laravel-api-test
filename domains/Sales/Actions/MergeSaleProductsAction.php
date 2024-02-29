@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Products\Actions;
+namespace Domains\Sales\Actions;
 
 use Domains\Products\Models\Product;
 use Illuminate\Database\Eloquent\Collection;

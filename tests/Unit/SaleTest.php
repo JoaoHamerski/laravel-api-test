@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use Domains\Products\Actions\MergeSaleProductsAction;
+use Domains\Sales\Actions\MergeSaleProductsAction;
 use Domains\Products\Models\Product;
 use Domains\Sales\Models\Sale;
 use Domains\Sales\Resources\SaleResource;
