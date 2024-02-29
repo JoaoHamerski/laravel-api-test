@@ -47,4 +47,16 @@ class SaleTest extends TestCase
             'product_ids.1'
         ]);
     }
+
+    /** @test */
+    public function it_can_be_canceled()
+    {
+        $sale = Sale::factory()->create();
+
+        $this->assertFalse($sale->is_canceled);
+
+        $this->post(route('api.sales.cancel', ['sale' => $sale->id]));
+
+        $this->assertTrue($sale->fresh()->is_canceled);
+    }
 }
