@@ -13,6 +13,14 @@ class SaleTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function it_can_access_sales()
+    {
+        $response = $this->get(route('api.sales.get-all'));
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
     public function it_can_create_a_new_sale()
     {
         $products = Product::factory()->count(3)->create();
