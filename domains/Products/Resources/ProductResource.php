@@ -18,6 +18,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'price' => $this->price,
+            'amount_price' => $this->whenNotNull($this->amount_price),
             'description' => $this->description,
             'amount' => $this->whenNotNull($this->amount)
         ];

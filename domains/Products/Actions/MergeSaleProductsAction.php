@@ -14,7 +14,7 @@ class MergeSaleProductsAction
 
             $product->id = $groupedProducts[0]->id;
             $product->amount = $groupedProducts->count();
-            $product->price = $groupedProducts->sum('price');
+            $product->amount_price = $groupedProducts->sum('price');
 
             return $product;
         });
