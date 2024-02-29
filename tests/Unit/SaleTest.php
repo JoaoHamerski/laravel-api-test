@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Domains\Products\Models\Product;
 use Domains\Sales\Models\Sale;
+use Domains\Sales\Resources\SaleResource;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
@@ -32,12 +33,42 @@ class SaleTest extends TestCase
     public function it_belongs_to_many_products()
     {
         $sale = Sale::factory()
-        ->has(Product::factory()->count(5))
-        ->create();
+            ->has(Product::factory()->count(5))
+            ->create();
 
         $products = $sale->products;
 
         $this->assertCount(5, $products);
         $this->assertInstanceOf(Product::class, $products->first());
+    }
+
+    /** @test */
+    public function it_calculates_the_correct_amount()
+    {
+        $sale = Sale::factory()->has(
+            Product::factory()->count(5)
+        )->create();
+
+        $productsAmountFromQuery = $sale->products()->sum('price');
+        $productsAmountFromCollection = $sale->products->sum('price');
+
+        $this->assertEquals($productsAmountFromQuery, $sale->amount);
+        $this->assertEquals($productsAmountFromCollection, $sale->amount);
+    }
+
+    /** @test */
+    public function it_calculates_the_correct_amount_from_resource()
+    {
+        $newSale = Sale::factory()->has(
+            Product::factory()->count(5)
+        )->create();
+
+        $saleResource = (new SaleResource($newSale->load('products')));
+        $sale = $saleResource->response();
+
+        $data = $sale->getData(true);
+        $amount = $data['amount'];
+
+        $this->assertEquals($amount, $newSale->amount);
     }
 }
