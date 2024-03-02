@@ -1,0 +1,25 @@
+services:
+    app:
+        container_name: adoorei-test-app
+        environment:
+            - DB_HOST=database
+        build: .
+        ports:
+            - 8000:80
+        depends_on:
+            - database
+        networks:
+            - adoorei-network
+
+    database:
+        container_name: adoorei-test-db
+        image: mysql:8.0
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+        networks:
+            - adoorei-network
+
+networks:
+    adoorei-network:
+        name: adoorei-network
