@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -t adoorei-test-app php artisan migrate --seed
