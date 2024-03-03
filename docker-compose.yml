@@ -3,6 +3,8 @@ services:
         container_name: adoorei-test-app
         environment:
             - DB_HOST=database
+            - DB_DATABASE=${DB_DATABASE:-adoorei_test_backend}
+            - DB_PASSWORD=${DB_PASSWORD:-root}
         build: .
         ports:
             - 8000:80
@@ -15,8 +17,8 @@ services:
         container_name: adoorei-test-db
         image: mysql:8.0
         environment:
-            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-root}
+            - MYSQL_DATABASE=${DB_DATABASE:-adoorei_test_backend}
         networks:
             - adoorei-network
 
