@@ -24,3 +24,6 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
 
+RUN cp .env.example .env \
+    && php artisan key:generate
+
