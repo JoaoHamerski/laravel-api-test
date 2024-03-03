@@ -1,7 +1,7 @@
 # Adoorei teste backend
 
 ### Setup
-- Na raiz do diretório, rode `docker compose up --build`
+- Na raiz da aplicação, rode `docker compose up --build`
 - Acesse a aplicação em [localhost:8000](http://localhost:8000)
 - O endpoint `/` resulta em Erro 404, acesse [localhost:8000/api/produtos](http://localhost:8000/api/produtos) que é um dos endpoints da API.
 
