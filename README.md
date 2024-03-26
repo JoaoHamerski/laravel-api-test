@@ -1,4 +1,4 @@
-# Adoorei teste backend
+# Laravel API Test
 
 ### Setup
 - Na raiz da aplicação, rode `docker compose up --build`
